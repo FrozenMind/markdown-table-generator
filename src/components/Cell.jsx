@@ -7,6 +7,10 @@ export default function Cell({value, handleContentChange, rowNum, colNum}) {
     event.preventDefault()
   }
 
-  return <td><input type="text" placeholder="header" value={value} onChange={handleValueChange}/></td>
+  return <td>
+    <input type="text" placeholder={rowNum == 0
+        ? 'Header'
+        : 'Body'} value={value} onChange={handleValueChange}/>
+  </td>
 
 }

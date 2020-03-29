@@ -3,6 +3,7 @@ import './App.css'
 import HeaderComponent from './components/Header'
 import TableSetupComponent from './components/TableSetup'
 import TableComponent from './components/Table'
+import MarkdownPreview from './components/MarkdownPreview'
 
 export default function App() {
   const [setup, setSetup] = useState({cols: 2, rows: 2})
@@ -67,5 +68,6 @@ export default function App() {
     <HeaderComponent/>
     <TableSetupComponent setup={setup} handleSetupChange={handleSetupChange}/>
     <TableComponent setup={setup} content={content} handleContentChange={handleContentChange}/>
+    <MarkdownPreview content={content}/>
   </div>)
 }
