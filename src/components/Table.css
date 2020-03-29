@@ -1,0 +1,11 @@
+.input-table {
+  border-collapse: collapse;
+}
+
+.input-table, th, td {
+  border: 1px solid black;
+}
+
+.input-table th, .input-table td {
+  padding: 8px;
+}
