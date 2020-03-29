@@ -6,8 +6,18 @@ import TableComponent from './components/Table'
 
 export default function App() {
   const [setup, setSetup] = useState({cols: 2, rows: 2})
-  const [content, setContent] = useState([new Array(2), new Array(2), new Array(2)])
-
+  const [content, setContent] = useState([
+    [
+      '', ''
+    ],
+    [
+      '', ''
+    ],
+    [
+      '', ''
+    ]
+  ])
+  /* TODO: update content array base on localStorage, so no npe happens
   useEffect(() => {
     setSetup(JSON.parse(localStorage.getItem('table.setup')))
   }, [])
@@ -15,7 +25,7 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('table.setup', JSON.stringify(setup))
   }, [setup])
-
+*/
   function handleSetupChange(el, operator) {
     console.log(`update setup el=${el}, operator=${operator}`);
     const newSetup = {
@@ -46,9 +56,16 @@ export default function App() {
     setContent(newContent)
   }
 
+  function handleContentChange(rowNum, colNum, value) {
+    console.log('change content for row =', rowNum, 'and col =', colNum, 'to value = ', value);
+    let newContent = [...content]
+    newContent[rowNum][colNum] = value
+    setContent(newContent)
+  }
+
   return (<div>
     <HeaderComponent/>
     <TableSetupComponent setup={setup} handleSetupChange={handleSetupChange}/>
-    <TableComponent setup={setup} content={content}/>
+    <TableComponent setup={setup} content={content} handleContentChange={handleContentChange}/>
   </div>)
 }

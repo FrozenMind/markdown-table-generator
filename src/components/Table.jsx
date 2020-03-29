@@ -1,29 +1,17 @@
 import React from 'react'
 import './Table.css'
+import Row from './Row'
 
-export default function TableComponent({setup, content}) {
-
-  function getRows() {
-    let rows = []
-    for (let r = 0; r < setup.rows; r++) {
-      let cols = []
-      for (let c = 0; c < setup.cols; c++) {
-        cols.push(<td><input type="text" placeholder="body"/></td>)
-      }
-      rows.push(<tr>{cols}</tr>)
-    }
-    return rows
-  }
+export default function TableComponent({setup, content, handleContentChange}) {
 
   return (<div>
     <table className="input-table">
       <thead>
-        <tr>
-          {new Array(setup.cols).map(el => <th><input type="text" placeholder="header"/></th>)}
-        </tr>
+        <Row key="0" rowNum="0" colCount={setup.cols} content={content} handleContentChange={handleContentChange}/>
       </thead>
       <tbody>
-        {getRows()}
+        {Array.from(Array(setup.rows).keys()).map(el => <Row key={el + 1} rowNum={el + 1} colCount={setup.cols} content={content} handleContentChange={handleContentChange}/>)}
+        <tr></tr>
       </tbody>
     </table>
   </div>)
